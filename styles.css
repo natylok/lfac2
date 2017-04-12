@@ -1,6 +1,6 @@
-.aaa .ddd {
-  color: red;
+.main-logo {
+  background-color: #5c8a8a !important;
 }
-.ap {
-  color: blue;
+.main-logo .menu-logo {
+  border-width: 0px !important;
 }

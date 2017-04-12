@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { loadData,getData } from '../../../actions/actions'
-import  GamesUI from '../../ui/games/gamesui'
+
 class Games extends React.Component{
     constructor(props){
         super(props);
