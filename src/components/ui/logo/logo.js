@@ -4,25 +4,21 @@ import createHistory from 'history/createBrowserHistory'
 export default class Logo extends Component {
     constructor(props){
         super(props);
-        this.state = {activeItem:'home'}
+        this.state = {currentState:window.location.hash.replace("#/","")}
     }
-    componentDidMount(){
-        console.dir(this.props.currentPath);
-    }
-    handleItemClick(){
-        (e, { name }) => this.setState({ activeItem: name })
+    handleItemClick(item){
+       console.log(item);
     }  
     render() {
         const { activeItem } = this.state
-
+        const logoOptions = [];
+        this.props.options.forEach((item) => {
+            logoOptions.push(<Menu.Item name={item.name} active={item.isActive} onClick={() => {this.handleItemClick(item)}} key={item.name} />)
+        });
         return (
             <Segment inverted className="main-logo">
-                <Menu inverted pointing secondary className="menu-logo">
-                    {this.props.items.forEach((item) => {
-                        return (
-                    <Menu.Item name={item.name} active={item.isActive} onClick={this.handleItemClick.bind(this,item.name)} />
-                        )
-                    })}
+                <Menu inverted pointing secondary className="logo-menu">
+                    {logoOptions}     
                 </Menu>
             </Segment>
         )

@@ -1,12 +1,13 @@
-const currentLocation = fixLocationHash(currentLocation);
-    
+const fixLocationHash = (item) => {
+    item = item.replace('#/', "");
+    return item;
+}
+let currentLocation = fixLocationHash(window.location.hash);
+currentLocation = currentLocation != "" ? currentLocation : "games";
 const LOGO_OPTIONS = [
-    { name: 'Games', isActive: this.state === currentLocation,state:'games' },
-    { name: 'Clans', isActive: this.state === currentLocation, state: 'clans' }
+    { name: 'Games', isActive: currentLocation === 'games' ,state:'games' },
+    { name: 'Clans', isActive: currentLocation === 'clans' ,state: 'clans' }
 ];
 
-const fixLocationHash = (item) => {
-     item = item.replace('#/',"");
-     return item;
-}
+
 export default LOGO_OPTIONS;
