@@ -1,5 +1,5 @@
 import React, { Component,PropTypes } from 'react'
-import { Menu, Segment , Icon } from 'semantic-ui-react'
+import { Menu, Segment, Icon } from 'semantic-ui-react'
 import createHistory from 'history/createBrowserHistory'
 import { hashHistory } from 'react-router'
 import _ from 'lodash';
@@ -30,8 +30,8 @@ export default class Logo extends Component {
             }
             else if(item.type === 'icon'){
                 logoOptions.push(<Menu.Item name={item.name} active={false} onClick={() => {this.handleItemClick(item,'icon')}} position={item.position} key={item.name}>
-                        {item.text}
                         <Icon name={item.iconName}/>
+                        {item.text}
                     </Menu.Item>
                 );
             }

@@ -1,7 +1,7 @@
 export default class UserService{
     constructor(){}
     static isUserLoggedIn(){
-        return true;
+        return false;
     }
     static getUserFullName(){
         return 'Nati Levy';
