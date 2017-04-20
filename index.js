@@ -9,7 +9,7 @@ import reduceMaster from './src/reducers/index'
 import {API_KEY,DEMO_REQUEST} from './src/staticData/static'
 import thunkMiddleware from 'redux-thunk'
 import Logo from './src/components/ui/logo/logo.js';
-
+import $ from 'jquery';
 
 let store = createStore(reduceMaster, applyMiddleware(thunkMiddleware))
 class Mains extends React.Component{
