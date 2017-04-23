@@ -2,21 +2,40 @@ import React, { Component,PropTypes } from 'react'
 import { Menu, Segment, Icon } from 'semantic-ui-react'
 import createHistory from 'history/createBrowserHistory'
 import { hashHistory } from 'react-router'
+//import { RegistertionModal } from '../registerationModal' 
+import  LoginModal  from './loginModal' 
 import _ from 'lodash';
-export default class Logo extends Component {
+export default class Logo extends Component {    
     constructor(props){
         super(props);
         const currentState = _.filter(this.props.options,(item) =>{
             return item.isActive;
         });
         this.currentState = currentState;
-        this.state = {currentState:window.location.hash.replace("#/","")}
+        this.consts = {
+            LOGIN: "login",
+            REGISTER:"register"
+        };
+        this.state = {currentState:window.location.hash.replace("#/",""),loginModalTrigger:false,registerationModalTrigger:false}
     }
 
     handleItemClick(item){
-        hashHistory.push(item.state);
-        this.setState({currentState : item.state});
+        if (item.state === this.consts.LOGIN){
+            this.setState({loginModalTrigger:true})
+        }
+        else if (item.state === this.consts.REGISTER){
+            this.setState({ registerationModalTrigger: true })
+        }
+        else{
+            this.setState({ currentState: item.state });
+        }
+        
     }  
+    handleLogin(userName,password){
+        httpService.sendRequest('post',Global.uris.login, userName,password).then((dataFromLogin) =>{
+            
+        });
+    }
     componentDidMount(){
         this.setState({ currentState: this.currentState[0].state });
     }   
@@ -37,11 +56,15 @@ export default class Logo extends Component {
             }
         });
         return (
-            <Segment  inverted className="main-logo">
-                <Menu  inverted pointing secondary className="logo-menu">
-                        {logoOptions}     
-                </Menu>
-            </Segment>
+            <div>
+                <Segment  inverted className="main-logo">
+                   <Menu  inverted pointing secondary className="logo-menu">
+                            {logoOptions}     
+                   </Menu>
+                     {/*<RegistertionModal registerationModalTrigger={this.state.registerationModalTrigger} />*/}
+                </Segment>
+                <LoginModal loginModalTrigger={this.state.loginModalTrigger} handleLogin={this.handleLogin}/>
+            </div>
         )
     }
 }
