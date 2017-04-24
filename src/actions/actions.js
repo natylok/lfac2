@@ -1,24 +1,9 @@
-// import jQuery from 'jquery'
-// const $ = jQuery;
+const SET_LOADER = "SET_LOADER";
+export function setLoader() {
+    return { type: SET_LOADER }
+}
 
-// const STATIC_URL = 'https://jsonplaceholder.typicode.com/posts';
-// export const RECEIVE_DATA = "RECEIVE_DATA";
-// export const receive = (data) => {
-//     type: RECEIVE_DATA,
-//     data
-// } 
-
-// export const loadData = (id) => {
-//     return {
-//         type:'LOAD_DATA',
-//         id:id
-//     }
-// }
-
-// export const getData = (id) => {
-//     return function(dispatch){
-//         dispatch({type:'START' , id});
-//         $.ajax(STATIC_URL).then((data) => dispatch({type:'GET_DATA',data}))
-        
-//     }
-// }
+const USER_LOGGED_IN = "USER_LOGGED_IN";
+export function userLoggedIn(data){
+    return {type:USER_LOGGED_IN , action : {data}};
+}

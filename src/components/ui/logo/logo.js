@@ -32,7 +32,8 @@ export default class Logo extends Component {
         
     }  
     handleLogin(userName,password){
-        httpService.sendRequest('post',Global.uris.login, userName,password).then((dataFromLogin) =>{
+        
+        httpService.sendRequest('post',Global.uris.login, userName,password).then((dataFromLogin,err) =>{
             
         });
     }
