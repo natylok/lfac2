@@ -6,9 +6,10 @@ function setUserDetails(state={
     switch (action.type){
         case USER_LOGGED_IN:
             return Object.assign({},state,{
-                isLoggedIn:true,
+                isUserLoggedIn:true,
                 userName:action.data.userName,
-                email:action.data.email
+                email:action.data.email,
+                userId: action.data.userId
             });
         default:
             return state;

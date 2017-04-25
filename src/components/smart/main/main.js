@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Menu, Segment } from 'semantic-ui-react'
 import { HashRouter, Router, Route } from 'react-router-dom'
-
 import Games from '../games/games'
 import Clans from '../games/games'
 import Logo from '../../ui/logo/logo'
 import LOGO_OPTIONS from '../../../staticData/logoOptions'
 import createHistory from 'history/createBrowserHistory'
-export default class MenuExampleInvertedSecondary extends Component {
+class MainMenu extends Component {
     constructor(props) {
         super(props);
     }
@@ -21,7 +21,14 @@ export default class MenuExampleInvertedSecondary extends Component {
                         <Route path="/games" component={Games} />
                     </div>
                 </HashRouter>
+                {this.props.loaderStatus && <div>Loading....</div>}
             </div>
         )
     }
 }
+function mapStateToProps(state){
+    return {
+        loaderStatus : state.loaderStatus
+    };
+}
+export default connect(mapStateToProps)(MainMenu)
