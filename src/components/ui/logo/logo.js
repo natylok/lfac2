@@ -69,6 +69,3 @@ export default class Logo extends Component {
         )
     }
 }
-Logo.PropTypes = {
-    location: PropTypes.object.isRequired
-};
