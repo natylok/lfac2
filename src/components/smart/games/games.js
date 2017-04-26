@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { loadData,getData } from '../../../actions/actions'
 
-class Games extends React.Component{
+export default class Games extends React.Component{
     constructor(props){
         super(props);
     }
@@ -14,8 +14,7 @@ class Games extends React.Component{
         return (
             <div>
                 <input/>
-                <div>{this.props.bla}</div>
-                <button onClick={this.getA.bind(this)}>Click</button>
+                <div>aaaa</div>
             </div>
         )
     }
@@ -32,5 +31,5 @@ function mapDispatchToProps(dispatch){
         }
 }
 
-Games = connect(mapStateToProps, mapDispatchToProps)(Games);
-export default Games;
+// Games = connect(mapStateToProps, mapDispatchToProps)(Games);
+// export default Games;

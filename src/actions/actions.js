@@ -3,10 +3,6 @@ export function setLoader(status) {
     return { type: SET_LOADER ,status}
 }
 
-export const USER_LOGGED_IN = "USER_LOGGED_IN";
-export function userLoggedIn(data){
-    return {type:USER_LOGGED_IN , data};
-}
 
 export const REQUEST_USER_LOGGED_IN = "REQUEST_USER_LOGGED_IN";
 export function requestUserLoggedIn(details){
