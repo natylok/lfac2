@@ -3,7 +3,7 @@ import userReducer from'./userReducer'
 import setLoader from './loaderReducer'
 const reduceMaster = combineReducers({
     userReducer,
-    setLoader
+    loaderReducer
 })
 
 export default reduceMaster

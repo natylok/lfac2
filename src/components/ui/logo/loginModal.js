@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Modal, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import setLoader from '../../actions/actions';
+import {setLoader} from '../../../actions/actions';
 class LoginModal extends Component{
     constructor(props){
         super(props);
@@ -9,6 +9,7 @@ class LoginModal extends Component{
     }
     handleClick(a,b){
         this.props.dispatch(setLoader(true));
+        this.props.closeModal();
     }
     render(){
         return(

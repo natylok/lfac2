@@ -64,7 +64,7 @@ export default class Logo extends Component {
                    </Menu>
                      {/*<RegistertionModal registerationModalTrigger={this.state.registerationModalTrigger} />*/}
                 </Segment>
-                <LoginModal loginModalTrigger={this.state.loginModalTrigger} />
+                <LoginModal loginModalTrigger={this.state.loginModalTrigger} closeModal={() => {this.setState({loginModalTrigger:false})}} />
             </div>
         )
     }
