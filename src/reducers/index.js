@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import userReducer from'./userReducer'
-import setLoader from './loaderReducer'
+import loaderReducer from './loaderReducer'
 const reduceMaster = combineReducers({
     userReducer,
     loaderReducer

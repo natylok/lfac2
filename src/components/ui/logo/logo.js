@@ -5,6 +5,7 @@ import { hashHistory } from 'react-router'
 //import { RegistertionModal } from '../registerationModal' 
 import  LoginModal  from './loginModal' 
 import _ from 'lodash';
+import $ from 'jquery';
 export default class Logo extends Component {    
     constructor(props){
         super(props);
@@ -31,12 +32,6 @@ export default class Logo extends Component {
         }
         
     }  
-    handleLogin(userName,password){
-        
-        httpService.sendRequest('post',Global.uris.login, userName,password).then((dataFromLogin,err) =>{
-            
-        });
-    }
     componentDidMount(){
         this.setState({ currentState: this.currentState[0].state });
     }   

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Button, Modal, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import {setLoader} from '../../../actions/actions';
+import { requestUserLoggedIn } from '../../../actions/actions';
 class LoginModal extends Component{
     constructor(props){
         super(props);
         this.state = {userName:"",password:""};
     }
-    handleClick(a,b){
-        this.props.dispatch(setLoader(true));
+    handleLogin(userName,password){
+        this.props.dispatch(requestUserLoggedIn({userName,password}));
         this.props.closeModal();
     }
     render(){
@@ -26,7 +26,7 @@ class LoginModal extends Component{
                                 <input placeholder="Password" onChange={(e) => {this.setState({password:e.target.value})}}/>
                             </Form.Field>
                             <Form.Field>
-                            <Button onClick={(e) => { e.preventDefault(); this.handleClick(this.state.userName , this.state.password)}}>Submit</Button>
+                            <Button onClick={(e) => { e.preventDefault(); this.handleLogin(this.state.userName , this.state.password)}}>Submit</Button>
                             </Form.Field>
                         </Form>
                     </Modal.Content>

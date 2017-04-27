@@ -11,9 +11,7 @@ class MainMenu extends Component {
     constructor(props) {
         super(props);
     }
-    getProps(){
-        console.log(this.props);
-    }
+
     render() {
         return (
             <div>
@@ -24,7 +22,7 @@ class MainMenu extends Component {
                         <Route path="/games" component={Games} />
                     </div>
                 </HashRouter>
-                <button onClick={()=>this.getProps()}>Click</button>
+ 
                 {this.props.loaderStatus && <div>Loading....</div>}
             </div>
         )
@@ -32,7 +30,7 @@ class MainMenu extends Component {
 }
 function mapStateToProps(state){
     return {
-        loaderStatus : state.loaderReducer.currentStatus
+        loaderStatus: state.loaderReducer
     };
 }
 export default connect(mapStateToProps)(MainMenu)
