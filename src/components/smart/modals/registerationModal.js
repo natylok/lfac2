@@ -2,23 +2,21 @@ import React, { Component } from 'react'
 import { Button, Modal, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { requestUserRegister } from '../../../actions/registerActions';
+import { constants } from '../../../staticData/consts';
+import { closeModal } from '../../../actions/modalActions';
 import _ from 'lodash';
 class RegisterModal extends Component {
     constructor(props) {
         super(props);
         this.state = { userName: "", password: "" ,email:"",fullName:""};
-        this.consts = {
-            LOGIN: 'login',
-            REGISTER: 'register'
-        };
     }
     handleRegister(userName, password, email, fullName) {
         this.props.dispatch(requestUserRegister({ userName, password,email,fullName }));
-        this.props.closeModal();
+       
     }
     render() {
         return (
-            <Modal open={this.props.modalType === this.consts.REGISTER} onClose={() => {this.props.closeModal()}}>
+            <Modal open={this.props.modalType === constants.REGISTER} onClose={() => { this.props.dispatch(closeModal());}}>
                 <Modal.Header><h4>Registeration</h4></Modal.Header>
                 <Modal.Content>
                     <Form>
@@ -50,7 +48,8 @@ class RegisterModal extends Component {
 
 function mapStateToProps(state) {
     return {
-        modalType: state.modalReducer.modalState
+        modalType: state.modalReducer.modalState,
+        modalOpen: state.modalReducer.modalOpen
     };
 }
 export default connect(mapStateToProps)(RegisterModal);

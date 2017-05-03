@@ -1,4 +1,5 @@
 import UserService from '../services/userService'
+import {constants} from '../staticData/consts'
 const isUserLoggedIn = UserService.isUserLoggedIn();
 const fixLocationHash = (item) => {
     item = item.replace('#/', "");
@@ -15,8 +16,8 @@ if (isUserLoggedIn){
 }
 else{
     userOptions = [
-        {type:'text', name: 'Login', isActive:false , state:'login',position:'right'},
-        { type: 'text', name: 'Sign up', isActive: false , state:'signup'}
+        {type:'text', name: 'Login', isActive:false , state:constants.LOGIN ,position:'right'},
+        { type: 'text', name: 'Sign up', isActive: false , state:constants.REGISTER}
     ];
 }
 let LOGO_OPTIONS = [

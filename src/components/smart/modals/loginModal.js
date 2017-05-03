@@ -3,14 +3,11 @@ import { Button, Modal, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { requestUserLoggedIn } from '../../../actions/loginActions';
 import {closeModal} from '../../../actions/modalActions';
+import {constants} from '../../../staticData/consts';
 class LoginModal extends Component{
     constructor(props){
         super(props);
         this.state = {userName:"",password:""};
-        this.consts = {
-            LOGIN: 'login',
-            REGISTER: 'register'
-        };
     }
     handleLogin(userName,password){
         this.props.dispatch(requestUserLoggedIn({userName,password}));
@@ -18,7 +15,7 @@ class LoginModal extends Component{
     }
     render(){
         return(
-            <Modal onClose={() => { this.props.dispatch(closeModal()); }} open={this.props.modalOpen && this.props.modalType == this.consts.LOGIN}>
+            <Modal onClose={() => { this.props.dispatch(closeModal()); }} open={this.props.modalOpen && this.props.modalType == constants.LOGIN}>
                     <Modal.Header><h4>Log in</h4></Modal.Header>
                     <Modal.Content>
                         <Form>
@@ -42,8 +39,8 @@ class LoginModal extends Component{
 
 function mapStateToProps(state){
     return {
-        modalType: state.modalReducer.modelState,
-        modalOpen: state.modalReducer.modelOpen
+        modalType: state.modalReducer.modalState,
+        modalOpen: state.modalReducer.modalOpen
     };
 }
 export default connect(mapStateToProps)(LoginModal);

@@ -4,6 +4,7 @@ import createHistory from 'history/createBrowserHistory'
 import { hashHistory } from 'react-router'
 import {openModal} from '../../../actions/modalActions'
 import { connect } from 'react-redux'
+import {constants} from '../../../staticData/consts'
 import _ from 'lodash';
 
 class Logo extends Component {    
@@ -12,20 +13,15 @@ class Logo extends Component {
         const currentState = _.filter(this.props.options,(item) =>{
             return item.isActive;
         });
-        this.consts = {
-            LOGIN:'login',
-            REGISTER:'register'
-        };
         this.currentState = currentState;
         this.state = {currentState:window.location.hash.replace("#/","")}
     }
     handleItemClick(item){
-
-        if (item.state === this.consts.LOGIN){
-            this.props.dispatch(openModal(this.consts.LOGIN));
+        if (item.state === constants.LOGIN){
+            this.props.dispatch(openModal(constants.LOGIN));
         }
-        else if (item.state === this.consts.REGISTER){
-            this.props.dispatch(openModal(this.consts.RGISTER))
+        else if (item.state === constants.REGISTER){
+            this.props.dispatch(openModal(constants.REGISTER))
         }
         else{
             this.setState({ currentState: item.state });

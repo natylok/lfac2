@@ -5,6 +5,7 @@ import { HashRouter, Router, Route } from 'react-router-dom'
 import Games from '../games/games'
 import Clans from '../games/games'
 import Logo from '../../ui/logo/logo'
+import Loader from '../../ui/loader/loader'
 import LOGO_OPTIONS from '../../../staticData/logoOptions'
 import createHistory from 'history/createBrowserHistory'
 import ModalRoot from '../modals/modalRoot'
@@ -24,7 +25,7 @@ class MainMenu extends Component {
                     </div>
                 </HashRouter>
                 <ModalRoot/>
-                {this.props.loaderStatus && <div>Loading....</div>}
+                <Loader active={this.props.loaderStatus}/>
             </div>
         )
     }
