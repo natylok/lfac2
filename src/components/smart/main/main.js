@@ -7,6 +7,7 @@ import Clans from '../games/games'
 import Logo from '../../ui/logo/logo'
 import LOGO_OPTIONS from '../../../staticData/logoOptions'
 import createHistory from 'history/createBrowserHistory'
+import ModalRoot from '../modals/modalRoot'
 class MainMenu extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +23,7 @@ class MainMenu extends Component {
                         <Route path="/games" component={Games} />
                     </div>
                 </HashRouter>
- 
+                <ModalRoot/>
                 {this.props.loaderStatus && <div>Loading....</div>}
             </div>
         )

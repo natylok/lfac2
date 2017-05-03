@@ -7,6 +7,10 @@ class RegisterModal extends Component {
     constructor(props) {
         super(props);
         this.state = { userName: "", password: "" ,email:"",fullName:""};
+        this.consts = {
+            LOGIN: 'login',
+            REGISTER: 'register'
+        };
     }
     handleRegister(userName, password, email, fullName) {
         this.props.dispatch(requestUserRegister({ userName, password,email,fullName }));
@@ -14,7 +18,7 @@ class RegisterModal extends Component {
     }
     render() {
         return (
-            <Modal open={this.props.registerationModalTrigger} onClose={() => {this.props.closeModal()}}>
+            <Modal open={this.props.modalType === this.consts.REGISTER} onClose={() => {this.props.closeModal()}}>
                 <Modal.Header><h4>Registeration</h4></Modal.Header>
                 <Modal.Content>
                     <Form>
@@ -43,4 +47,10 @@ class RegisterModal extends Component {
         );
     }
 }
-export default connect()(RegisterModal);
+
+function mapStateToProps(state) {
+    return {
+        modalType: state.modalReducer.modalState
+    };
+}
+export default connect(mapStateToProps)(RegisterModal);

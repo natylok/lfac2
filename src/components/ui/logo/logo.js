@@ -2,38 +2,30 @@ import React, { Component,PropTypes } from 'react'
 import { Menu, Segment, Icon } from 'semantic-ui-react'
 import createHistory from 'history/createBrowserHistory'
 import { hashHistory } from 'react-router'
-import  RegistertionModal  from './registerationModal' 
-import  LoginModal  from './loginModal' 
+import {openModal} from '../../../actions/modalActions'
+import { connect } from 'react-redux'
 import _ from 'lodash';
 
-export default class Logo extends Component {    
+class Logo extends Component {    
     constructor(props){
         super(props);
         const currentState = _.filter(this.props.options,(item) =>{
             return item.isActive;
         });
-        this.currentState = currentState;
         this.consts = {
-            LOGIN: "login",
-            REGISTER:"signup"
+            LOGIN:'login',
+            REGISTER:'register'
         };
-        this.state = {currentState:window.location.hash.replace("#/",""),loginModalTrigger:false,registerationModalTrigger:false}
-    }
-    closeModal(modalType){
-        if (modalType == this.consts.LOGIN) {
-            this.setState({loginModalTrigger:false});
-        }
-        else{
-            this.setState({registerationModalTrigger:false});
-        }
+        this.currentState = currentState;
+        this.state = {currentState:window.location.hash.replace("#/","")}
     }
     handleItemClick(item){
 
         if (item.state === this.consts.LOGIN){
-            this.setState({loginModalTrigger:true})
+            this.props.dispatch(openModal(this.consts.LOGIN));
         }
         else if (item.state === this.consts.REGISTER){
-            this.setState({ registerationModalTrigger: true })
+            this.props.dispatch(openModal(this.consts.RGISTER))
         }
         else{
             this.setState({ currentState: item.state });
@@ -66,9 +58,9 @@ export default class Logo extends Component {
                             {logoOptions}     
                    </Menu>
                 </Segment>
-                <LoginModal loginModalTrigger={this.state.loginModalTrigger} closeModal={() => {this.closeModal('login')}} />
-                <RegistertionModal registerationModalTrigger={this.state.registerationModalTrigger} closeModal={() => { this.closeModal('signup') }} />
             </div>
         )
     }
 }
+
+export default connect()(Logo);
