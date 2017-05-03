@@ -1,3 +1,5 @@
+const baseUrl = "http://localhost:8877";
 export const apiList = {
-    login:'http://localhost:8877/login'
+    login:`${baseUrl}/login`,
+    register: `${baseUrl}/register`
 };

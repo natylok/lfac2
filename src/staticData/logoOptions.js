@@ -16,7 +16,7 @@ if (isUserLoggedIn){
 else{
     userOptions = [
         {type:'text', name: 'Login', isActive:false , state:'login',position:'right'},
-        { type: 'text', name: 'Sign up', isActive: currentLocation === 'signup' , state:'signup'}
+        { type: 'text', name: 'Sign up', isActive: false , state:'signup'}
     ];
 }
 let LOGO_OPTIONS = [

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Button, Modal, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { requestUserRegister } from '../../../actions/actions';
+import { requestUserRegister } from '../../../actions/registerActions';
+import _ from 'lodash';
 class RegisterModal extends Component {
     constructor(props) {
         super(props);
-        this.state = { userName: "", password: "" };
+        this.state = { userName: "", password: "" ,email:"",fullName:""};
     }
     handleRegister(userName, password, email, fullName) {
         this.props.dispatch(requestUserRegister({ userName, password,email,fullName }));
@@ -13,7 +14,7 @@ class RegisterModal extends Component {
     }
     render() {
         return (
-            <Modal open={this.props.loginModalTrigger} closeOnDocumentClick={true}>
+            <Modal open={this.props.registerationModalTrigger} onClose={() => {this.props.closeModal()}}>
                 <Modal.Header><h4>Registeration</h4></Modal.Header>
                 <Modal.Content>
                     <Form>
@@ -42,4 +43,4 @@ class RegisterModal extends Component {
         );
     }
 }
-export default connect()(LoginModal);
+export default connect()(RegisterModal);

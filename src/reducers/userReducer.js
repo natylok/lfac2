@@ -1,6 +1,6 @@
-import {REQUEST_USER_LOGGED_IN,SET_USER_DETAILS} from '../actions/actions';
+import {REQUEST_USER_LOGGED_IN,SET_USER_DETAILS} from '../actions/loginActions';
 
-function setUserDetails(state={
+function loginReducer(state={
     isLoggedIn:false
 },action){
     switch (action.type){
@@ -20,3 +20,4 @@ function setUserDetails(state={
             return state;
     }
 }
+

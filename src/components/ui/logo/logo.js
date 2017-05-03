@@ -2,10 +2,10 @@ import React, { Component,PropTypes } from 'react'
 import { Menu, Segment, Icon } from 'semantic-ui-react'
 import createHistory from 'history/createBrowserHistory'
 import { hashHistory } from 'react-router'
-//import { RegistertionModal } from '../registerationModal' 
+import  RegistertionModal  from './registerationModal' 
 import  LoginModal  from './loginModal' 
 import _ from 'lodash';
-import $ from 'jquery';
+
 export default class Logo extends Component {    
     constructor(props){
         super(props);
@@ -15,12 +15,20 @@ export default class Logo extends Component {
         this.currentState = currentState;
         this.consts = {
             LOGIN: "login",
-            REGISTER:"register"
+            REGISTER:"signup"
         };
         this.state = {currentState:window.location.hash.replace("#/",""),loginModalTrigger:false,registerationModalTrigger:false}
     }
-
+    closeModal(modalType){
+        if (modalType == this.consts.LOGIN) {
+            this.setState({loginModalTrigger:false});
+        }
+        else{
+            this.setState({registerationModalTrigger:false});
+        }
+    }
     handleItemClick(item){
+
         if (item.state === this.consts.LOGIN){
             this.setState({loginModalTrigger:true})
         }
@@ -57,9 +65,9 @@ export default class Logo extends Component {
                    <Menu  inverted pointing secondary className="logo-menu">
                             {logoOptions}     
                    </Menu>
-                     {/*<RegistertionModal registerationModalTrigger={this.state.registerationModalTrigger} />*/}
                 </Segment>
-                <LoginModal loginModalTrigger={this.state.loginModalTrigger} closeModal={() => {this.setState({loginModalTrigger:false})}} />
+                <LoginModal loginModalTrigger={this.state.loginModalTrigger} closeModal={() => {this.closeModal('login')}} />
+                <RegistertionModal registerationModalTrigger={this.state.registerationModalTrigger} closeModal={() => { this.closeModal('signup') }} />
             </div>
         )
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { loadData,getData } from '../../../actions/actions'
+import { loadData,getData } from '../../../actions/loginActions'
 
 export default class Games extends React.Component{
     constructor(props){
