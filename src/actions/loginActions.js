@@ -10,8 +10,9 @@ export function requestUserLoggedIn(details){
     }
 }
 
+export const SET_USER_DETAILS = "SET_USER_DETAILS";
 export function userLoggedInSuccessfully(data){
-    console.log("success");
+    console.log(data);
 }
 export function userFailedLoggedIn(err) {
     console.log("failed");

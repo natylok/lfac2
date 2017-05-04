@@ -28,6 +28,9 @@ class Logo extends Component {
         }
         
     }  
+    componentWillMount(){
+
+    }
     componentDidMount(){
         this.setState({ currentState: this.currentState[0].state });
     }   
@@ -36,16 +39,7 @@ class Logo extends Component {
         const { activeItem } = this.state
         const logoOptions = [];
         this.props.options.forEach((item) => {
-            if(item.type === 'text'){
                 logoOptions.push(<Menu.Item name={item.name} active={item.state === this.state.currentState} onClick={() => { this.handleItemClick(item) } } position={item.position} key={item.name} />)    
-            }
-            else if(item.type === 'icon'){
-                logoOptions.push(<Menu.Item name={item.name} active={false} onClick={() => {this.handleItemClick(item,'icon')}} position={item.position} key={item.name}>
-                        <Icon name={item.iconName}/>
-                        {item.text}
-                    </Menu.Item>
-                );
-            }
         });
         return (
             <div>
@@ -58,5 +52,6 @@ class Logo extends Component {
         )
     }
 }
+
 
 export default connect()(Logo);

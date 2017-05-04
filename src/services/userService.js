@@ -1,9 +1,11 @@
 export default class UserService{
-    constructor(){}
+    constructor(){
+
+    }
     static isUserLoggedIn(){
-        return false;
+        return this.isLoggedIn;
     }
     static getUserFullName(){
-        return 'Nati Levy';
+        return this.fullName;
     }
 }

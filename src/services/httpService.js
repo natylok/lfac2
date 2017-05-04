@@ -15,7 +15,11 @@ export default class HttpService {
             });
         }
         else{
-            console.log("Get");
+            return $.ajax({
+                type,
+                url,
+                contentType: "application/json; charset=utf-8"
+            });
         }
     }
 }
