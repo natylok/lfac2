@@ -1,11 +1,13 @@
 import { SET_USER_DETAILS } from '../actions/userActions';
 
-export function userReducer(state={
+export default function userReducer(state={
     isUserLoggedIn:false,
     userName:"",
     email:"",
     fullName:""
 },action){
+    console.log("currentState" , state);
+    console.log("currentact", action);
     switch (action.type){
         case SET_USER_DETAILS:
             return Object.assign({},state,{
