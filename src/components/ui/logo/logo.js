@@ -28,9 +28,6 @@ class Logo extends Component {
         }
         
     }  
-    componentWillMount(){
-
-    }
     componentDidMount(){
         this.setState({ currentState: this.currentState[0].state });
     }   
