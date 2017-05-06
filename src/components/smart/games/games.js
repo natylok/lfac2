@@ -8,7 +8,7 @@ export default class Games extends React.Component{
     }
     getA(){
         // this.props.loadData(51);
-        console.log("d is " ,this.props.d);
+       
     }
     render() {
         return (

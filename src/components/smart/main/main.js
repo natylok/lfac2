@@ -6,7 +6,7 @@ import Games from '../games/games'
 import Clans from '../games/games'
 import Logo from '../../ui/logo/logo'
 import Loader from '../../ui/loader/loader'
-import {setUserDetails} from '../../../actions/userActions'
+import { checkUser} from '../../../actions/userActions'
 import LOGO_OPTIONS from '../../../staticData/logoOptions'
 import createHistory from 'history/createBrowserHistory'
 import ModalRoot from '../modals/modalRoot'
@@ -15,9 +15,10 @@ class MainMenu extends Component {
         super(props);
     }
     componentWillMount(){
-        this.props.dispatch(setUserDetails());
+        this.props.dispatch(checkUser());
     }
     render() {
+        console.log("this is user data", this.props.userData);
         return (
             <div>
                 <Logo options={LOGO_OPTIONS} userData={this.props.userData}/>

@@ -6,12 +6,10 @@ export default function userReducer(state={
     email:"",
     fullName:""
 },action){
-    console.log("currentState" , state);
-    console.log("currentact", action);
     switch (action.type){
         case SET_USER_DETAILS:
             return Object.assign({},state,{
-                isUserLoggedIn:action.data.isUserLoggedIn,
+                isUserLoggedIn:true,
                 userName: action.data.userName,
                 email:action.data.email,
                 fullName:action.data.fullName
