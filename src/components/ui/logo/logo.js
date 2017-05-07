@@ -1,5 +1,5 @@
 import React, { Component,PropTypes } from 'react'
-import { Menu, Segment, Icon,Image } from 'semantic-ui-react'
+import { Menu, Segment, Icon,Image,Input } from 'semantic-ui-react'
 import createHistory from 'history/createBrowserHistory'
 import { hashHistory } from 'react-router'
 import {openModal} from '../../../actions/modalActions'
@@ -45,12 +45,15 @@ class Logo extends Component {
         });
         if (isUserLoggedIn){
             let userData = this.props.userData;
+            logoOptions.push(<Menu.Item position="right" className="search-games">
+                <Input icon='search' placeholder='Search games...' />
+            </Menu.Item>);
             logoOptions.push(<Menu.Item name={userData.fullName} active={false} onClick={() => { this.handleItemClick(item) }} position="right" key={userData.fullName} ><Icon name='user'/> {userData.fullName} </Menu.Item>)
             logoOptions.push(<Menu.Item name='logout' active={false} onClick={()=> {this.logout();}} key="logout"/>)
         }
         return (
             <div>
-                <Menu widths={7}>
+                <Menu inverted className="main-logo">
                      {logoOptions}     
                 </Menu>
             </div>
