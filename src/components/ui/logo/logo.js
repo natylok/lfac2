@@ -50,11 +50,9 @@ class Logo extends Component {
         }
         return (
             <div>
-                <Segment  inverted className="main-logo">
-                   <Menu  inverted pointing secondary className="logo-menu">
-                            {logoOptions}     
-                   </Menu>
-                </Segment>
+                <Menu widths={7}>
+                     {logoOptions}     
+                </Menu>
             </div>
         )
     }

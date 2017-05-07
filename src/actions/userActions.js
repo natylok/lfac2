@@ -11,16 +11,11 @@ export function checkUser(){
             dispatch(setUserDetails(data));
 
         },err => {
-            failureHandler(err);
+            dispatch(setLoader(false));
         })
     }
 }
 export const SET_USER_DETAILS = "SET_USER_DETAILS";
 function setUserDetails(data){
         return {type:SET_USER_DETAILS,data:data};
-}
-
-
-function failureHandler(err){
-    console.log("userFailed", err);
 }
