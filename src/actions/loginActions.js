@@ -12,7 +12,7 @@ export function requestUserLoggedIn(details){
 
 
 export function userLoggedInSuccessfully(data){
-    console.log(data);
+    window.location.reload();
 }
 export function userFailedLoggedIn(err) {
     console.log("failed");
