@@ -45,7 +45,7 @@ class Logo extends Component {
         });
         if (isUserLoggedIn){
             let userData = this.props.userData;
-            logoOptions.push(<Menu.Item position="right" className="search-games">
+            logoOptions.push(<Menu.Item position="right" className="search-games" key="search-games">
                 <Input icon='search' placeholder='Search games...' />
             </Menu.Item>);
             logoOptions.push(<Menu.Item name={userData.fullName} active={false} onClick={() => { this.handleItemClick(item) }} position="right" key={userData.fullName} ><Icon name='user'/> {userData.fullName} </Menu.Item>)

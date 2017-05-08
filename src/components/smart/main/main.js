@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu, Segment, Divider } from 'semantic-ui-react'
 import { HashRouter, Router, Route } from 'react-router-dom'
 import Games from '../games/games'
 import Clans from '../games/games'
@@ -18,10 +18,11 @@ class MainMenu extends Component {
         this.props.dispatch(checkUser());
     }
     render() {
-        console.log("this is user data", this.props.userData);
         return (
             <div>
                 <Logo options={LOGO_OPTIONS} userData={this.props.userData}/>
+                <ModalRoot/>
+                <Divider/>
                 <HashRouter>
                     <div>
                         <Route exact path="/" component={Games} />
@@ -29,7 +30,6 @@ class MainMenu extends Component {
                     </div>
                 </HashRouter>
                 <Loader active={this.props.loaderStatus} />
-                <ModalRoot/>
             </div>
         )
     }

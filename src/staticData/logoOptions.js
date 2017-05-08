@@ -22,7 +22,7 @@ else{
 }
 let LOGO_OPTIONS = [
     { type: 'text', name: 'Games', isActive: currentLocation === 'games', state: 'games'},
-    { type: 'text', name: 'Clans', isActive: currentLocation === 'clans' ,state: 'clans'},
+    { type: 'text', name: 'My clans', isActive: currentLocation === 'clans' ,state: 'clans'},
 ];
 LOGO_OPTIONS = LOGO_OPTIONS.concat(userOptions);
 
