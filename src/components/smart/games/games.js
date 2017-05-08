@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {setLoader} from '../../../actions/loaderActions'
 import { getGames } from '../../../actions/gameActions'
+import { Header, Divider, Grid ,Image} from 'semantic-ui-react'
 class Games extends React.Component{
     constructor(props){
         super(props);
@@ -11,16 +12,19 @@ class Games extends React.Component{
     }
     render() {
         if (this.props.gameList && this.props.gameList.games){
-            var d = [];
+            var gamesList = [];
             this.props.gameList.games.forEach((item) => {
-                 d.push(<li>{item.name}</li>);
+                gamesList.push(<Grid.Column><Image src={item.picturePath} width={180} height={250}/></Grid.Column>);
             })
         }
         return (
-            <div>
-                <ul>
-                    {d}
-                </ul>
+            <div className="main-wrapper">
+                <Header size='large'>Game List</Header> 
+                <Divider />
+                <Header size='small' color='grey'> open the following to see clans and players:</Header> 
+                <Grid columns={3}>
+                    {gamesList}
+                </Grid>
             </div>
         )
     }

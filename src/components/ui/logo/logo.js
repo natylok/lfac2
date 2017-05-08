@@ -35,7 +35,7 @@ class Logo extends Component {
     render() {
         const { activeItem } = this.state
         const logoOptions = [];
-        logoOptions.push(<Menu.Item name="logo" key="main-logo"><Image src="/assests/logo/logo.png" width={50} height={20}/></Menu.Item>)
+        logoOptions.push(<Menu.Item name="logo" key="main-logo"><Image src="/assets/logo/logo.png" width={50} height={20}/></Menu.Item>)
         let isUserLoggedIn = this.props.userData && this.props.userData.isUserLoggedIn;
         this.props.options.forEach((item) => {
             if (isUserLoggedIn && (item.state === constants.LOGIN || item.state === constants.REGISTER )){

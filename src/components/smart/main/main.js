@@ -22,9 +22,8 @@ class MainMenu extends Component {
             <div>
                 <Logo options={LOGO_OPTIONS} userData={this.props.userData}/>
                 <ModalRoot/>
-                <Divider/>
                 <HashRouter>
-                    <div>
+                    <div className="main-warpper">
                         <Route exact path="/" component={Games} />
                         <Route path="/games" component={Games} />
                     </div>
