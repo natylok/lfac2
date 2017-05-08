@@ -7,20 +7,29 @@ class Games extends React.Component{
         super(props);
     }
     componentWillMount(){
-        
+        this.props.dispatch(getGames());
     }
     render() {
+        if (this.props.gameList && this.props.gameList.games){
+            var d = [];
+            this.props.gameList.games.forEach((item) => {
+                 d.push(<li>{item.name}</li>);
+            })
+        }
         return (
             <div>
+                <ul>
+                    {d}
+                </ul>
             </div>
         )
     }
 }
 
 function mapStateToProps(state,ownProps){
-}
-function mapDispatchToProps(dispatch){
-    return { 
+    return {
+        gameList:state.gameList    
     }
 }
-export default connect()(Games);
+
+export default connect(mapStateToProps)(Games);

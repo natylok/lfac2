@@ -3,7 +3,7 @@ import {setLoader} from './loaderActions'
 import {apiList} from '../staticData/consts'
 
 export function requestUserLoggedIn(details){
-    return dispatch => {
+    return (dispatch) => {
         dispatch(setLoader(true));
         HttpService.sendRequest({ userName: details.userName, password: details.password }, 'POST', apiList.login)
         .then(userLoggedInSuccessfully,userFailedLoggedIn);
