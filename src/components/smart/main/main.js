@@ -10,6 +10,7 @@ import { checkUser} from '../../../actions/userActions'
 import LOGO_OPTIONS from '../../../staticData/logoOptions'
 import createHistory from 'history/createBrowserHistory'
 import ModalRoot from '../modals/modalRoot'
+import GamePage from '../games/gamePage'
 class MainMenu extends Component {
     constructor(props) {
         super(props);
@@ -23,9 +24,10 @@ class MainMenu extends Component {
                 <Logo options={LOGO_OPTIONS} userData={this.props.userData}/>
                 <ModalRoot/>
                 <HashRouter>
-                    <div className="main-warpper">
+                    <div className="main-wrapper">
                         <Route exact path="/" component={Games} />
                         <Route path="/games" component={Games} />
+                        <Route path="/games/:gameId" component={GamePage} />
                     </div>
                 </HashRouter>
                 <Loader active={this.props.loaderStatus} />

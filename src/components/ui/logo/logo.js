@@ -25,11 +25,15 @@ class Logo extends Component {
         }
         else{
             this.setState({ currentState: item.state });
+            hashHistory.push(item.state);
         }
         
     }  
     componentDidMount(){
         this.setState({ currentState: this.currentState[0].state });
+        if (hashHistory.getCurrentLocation().pathname === "/"){
+            hashHistory.push("games");
+        }
     }   
 
     render() {
