@@ -9,3 +9,8 @@ export const constants = {
     LOGIN:'login',
     REGISTER:'register'
 }
+export const states = {
+    gameList : 'gameList',
+    games: 'games',
+    listOfGames : ['wow','lol','runescape']
+};

@@ -2,12 +2,12 @@ import { combineReducers } from 'redux'
 import userReducer from'./userReducer'
 import loaderReducer from './loaderReducer'
 import modalReducer from './modalReducer'
-import gameList from './gameReducer'
+import games from './gameReducer'
 const reduceMaster = combineReducers({
     userReducer,
     loaderReducer,
     modalReducer,
-    gameList
+    games
 })
 
-export default reduceMaster
+export default reduceMaster;

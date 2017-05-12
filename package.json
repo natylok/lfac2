@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --port 900",
+    "dev": "webpack-dev-server --port 900 --history-api-fallback",
     "compile": "lessc mainCss.less"
   },
   "author": "",

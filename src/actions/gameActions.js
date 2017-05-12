@@ -15,6 +15,10 @@ export function getGames(){
         }
     }
 }
+export const SET_CURRENT_GAME = 'SET_CURRENT_GAME';
+export function setCurrentGameOption(id,name){
+    return {type:SET_CURRENT_GAME , game:{id,name}}
+}
 export const SET_GAME_LIST = "SET_GAME_LIST";
 export function setGameListData(data){
     return {type:SET_GAME_LIST,games:data};
