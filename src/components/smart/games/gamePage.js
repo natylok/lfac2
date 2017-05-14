@@ -4,16 +4,16 @@ import _ from 'lodash';
 import { setCurrentGameOption } from '../../../actions/gameActions'
 import { hashHistory } from 'react-router'
 import { states } from '../../../staticData/consts';
-import { Button ,Divider,Segment,Grid} from 'semantic-ui-react'
+import { Button, Divider, Segment, Grid, Header} from 'semantic-ui-react'
 class GamePage extends React.Component{
     constructor(props){
         super(props);
     }
     componentWillMount(){
         if (!this.props.currentGame){  
-            let currentGame = this.isGameAppearsInList()      
+            let currentGame = this.isGameAppearsInList();     
             if (currentGame){
-                this.props.dispatch(setCurrentGameOption(currentGame.name,currentGame._id));
+                this.props.dispatch(setCurrentGameOption(currentGame._id,currentGame.name));
             }
             else{ 
                 this.props.history.push(`/${states.gameList}`);
@@ -32,17 +32,7 @@ class GamePage extends React.Component{
     render(){
         return(
             <div>
-                <div className="">
-                    <Grid columns={2}>
-                        <Grid.Column>
-                            <Button size="massive">I'm looking for a clan</Button>
-                        </Grid.Column>
-                        <Divider vertical/>
-                        <Grid.Column>
-                            <Button size="massive">I'm looking for a players</Button>
-                        </Grid.Column>
-                    </Grid>
-                </div>
+                <Header>{this.props.currentGame && this.props.currentGame.name}</Header> 
             </div>
         )
     }
@@ -50,7 +40,7 @@ class GamePage extends React.Component{
 }
 function mapStateToProps(state){
     return {
-        currentGame:state.games.currentGame,
+        currentGame: state.games.currentGame,
         gameList: state.games.list,
         isUserLoggedIn : state.userReducer.isUserLoggedIn
     }
