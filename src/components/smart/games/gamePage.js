@@ -4,10 +4,11 @@ import _ from 'lodash';
 import { setCurrentGameOption } from '../../../actions/gameActions'
 import { hashHistory } from 'react-router'
 import { states } from '../../../staticData/consts';
-import { Button, Divider, Segment, Grid, Header} from 'semantic-ui-react'
+import { Button, Divider, Segment, Grid, Header,Menu} from 'semantic-ui-react'
 class GamePage extends React.Component{
     constructor(props){
         super(props);
+        this.state = {currentActiveItem:'players'}
     }
     componentWillMount(){
         if (!this.props.currentGame){  
@@ -28,11 +29,17 @@ class GamePage extends React.Component{
         return gameInList;
     }
 
-
+    setActiveItem(item){
+        this.setState({ currentActiveItem : item});
+    }
     render(){
         return(
             <div>
-                <Header>{this.props.currentGame && this.props.currentGame.name}</Header> 
+                <Header size="huge" className="game-page-header" >{this.props.currentGame && this.props.currentGame.name}</Header> 
+                <Menu tabular className="game-page-menu">
+                    <Menu.Item name='Players' active={this.state.currentActiveItem == 'players'} onClick={() => { this.setActiveItem('players') }} />
+                    <Menu.Item name='Clans' active={this.state.currentActiveItem == 'clans'} onClick={() => {this.setActiveItem('clans')}} />
+                </Menu>
             </div>
         )
     }

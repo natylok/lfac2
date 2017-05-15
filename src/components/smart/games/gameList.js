@@ -10,7 +10,7 @@ class GameList extends React.Component{
         super(props);
     }
     handleGameClicked(item){
-        this.props.dispatch(setCurrentGameOption(item.name, item._id));
+        this.props.dispatch(setCurrentGameOption(item._id,item.name));
         hashHistory.push(`${states.games}/${item.state}`);   
     }
     render() {
