@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { setLoader } from '../../../actions/loaderActions'
-import { getGames, setCurrentGameOption } from '../../../actions/gameActions'
+import { getGames} from '../../../actions/gameActions'
 import { Header, Divider, Grid, Image } from 'semantic-ui-react'
 import { hashHistory } from 'react-router'
 import {states} from '../../../staticData/consts';

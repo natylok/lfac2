@@ -10,13 +10,14 @@ function setGameList(state = [], action) {
 }
 export default function games(state = {
         list : [],
-        currentGame:null
+        currentGame:null,
+        gamesDetails:{}
     },action){
         switch(action.type){
             case SET_GAME_LIST:
                 return Object.assign({},state,{list:setGameList(state.list,action)});
             case SET_CURRENT_GAME:
-                return Object.assign({},state,{currentGame:{id:action.game.id, name:action.game.name}}); 
+                return Object.assign({},state,{currentGame:{id:action.game.id, name:action.game.name, state:action.game.state}}); 
             default:
                 return state;
         }

@@ -5,21 +5,28 @@ import { setCurrentGameOption } from '../../../actions/gameActions'
 import { hashHistory } from 'react-router'
 import { states } from '../../../staticData/consts';
 import { Button, Divider, Segment, Grid, Header,Menu} from 'semantic-ui-react'
+import ClanList from '../clanList/clanList';
 class GamePage extends React.Component{
     constructor(props){
         super(props);
-        this.state = {currentActiveItem:'players'}
+        this.menuConsts = {
+            CLANS:'clans',
+            PLAYERS:'players'
+        }
+        this.state = { currentActiveItem: this.menuConsts.CLANS, currentGame:this.props.currentGame};
     }
     componentWillMount(){
         if (!this.props.currentGame){  
             let currentGame = this.isGameAppearsInList();     
             if (currentGame){
-                this.props.dispatch(setCurrentGameOption(currentGame._id,currentGame.name));
+                this.setState({currentGame});
+                this.props.dispatch(setCurrentGameOption(currentGame._id,currentGame.name,currentGame.state));
             }
             else{ 
                 this.props.history.push(`/${states.gameList}`);
             }
         }
+        //this.props.dispatch(setCurrentGameDetails(this.props.currentGame))
     }
     
     isGameAppearsInList(){
@@ -33,13 +40,19 @@ class GamePage extends React.Component{
         this.setState({ currentActiveItem : item});
     }
     render(){
+        const props = {
+            userId : this.props.userId,
+            currentGame: this.props.currentGame,
+            currentGameDetails: this.props.gamesDetails[this.state.currentGame.state]
+        }
         return(
             <div>
                 <Header size="huge" className="game-page-header" >{this.props.currentGame && this.props.currentGame.name}</Header> 
                 <Menu tabular className="game-page-menu">
-                    <Menu.Item name='Players' active={this.state.currentActiveItem == 'players'} onClick={() => { this.setActiveItem('players') }} />
-                    <Menu.Item name='Clans' active={this.state.currentActiveItem == 'clans'} onClick={() => {this.setActiveItem('clans')}} />
+                    <Menu.Item name='Clans' active={this.state.currentActiveItem == this.menuConsts.CLANS} onClick={() => { this.setActiveItem(this.menuConsts.CLANS)}} />
+                    <Menu.Item name='Players' active={this.state.currentActiveItem == this.menuConsts.PLAYERS} onClick={() => { this.setActiveItem(this.menuConsts.PLAYERS) }} />       
                 </Menu>
+                {this.state.currentActiveItem === this.menuConsts.CLANS && <ClanList {...props}/>}
             </div>
         )
     }
@@ -49,7 +62,9 @@ function mapStateToProps(state){
     return {
         currentGame: state.games.currentGame,
         gameList: state.games.list,
-        isUserLoggedIn : state.userReducer.isUserLoggedIn
+        isUserLoggedIn : state.userReducer.isUserLoggedIn,
+        gamesDetails : state.games.gamesDetails,
+        userId: state.userReducer.id
     }
 }
 
