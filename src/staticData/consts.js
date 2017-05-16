@@ -3,7 +3,8 @@ export const apiList = {
     login:`${baseUrl}/login`,
     register: `${baseUrl}/register`,
     getUserDetails: `${baseUrl}/1/user`,
-    getGames: `${baseUrl}/games/list`
+    getGames: `${baseUrl}/games/list`,
+    getGameDetails: `${baseUrl}/games/gameDetails`
 };
 export const constants = {
     LOGIN:'login',
