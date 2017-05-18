@@ -4,7 +4,8 @@ export const apiList = {
     register: `${baseUrl}/register`,
     getUserDetails: `${baseUrl}/1/user`,
     getGames: `${baseUrl}/games/list`,
-    getGameDetails: `${baseUrl}/games/gameDetails`
+    getGameDetails: (gameState) => { return `${baseUrl}/games/gameDetails/${gameState}` },
+    getPlayerByGame: (id, gameState) => {return `${baseUrl}/games/${gameState}players/${id}`}
 };
 export const constants = {
     LOGIN:'login',

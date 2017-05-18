@@ -7,7 +7,6 @@ const fixLocationHash = (item) => {
     return item;
 }
 let currentLocation = fixLocationHash(window.location.hash);
-console.log(currentLocation);
 currentLocation = currentLocation != "" ? currentLocation : "listGames";
 let userOptions = [
         {type:'text', name: 'Login', isActive:false , state:constants.LOGIN ,position:'right'},

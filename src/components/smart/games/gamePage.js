@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import _ from 'lodash';
-import { setCurrentGameOption } from '../../../actions/gameActions'
+import { setCurrentGameDetails, setCurrentGameOption} from '../../../actions/gameActions'
 import { hashHistory } from 'react-router'
 import { states } from '../../../staticData/consts';
 import { Button, Divider, Segment, Grid, Header,Menu} from 'semantic-ui-react'
@@ -17,16 +17,21 @@ class GamePage extends React.Component{
     }
     componentWillMount(){
         if (!this.props.currentGame){  
-            let currentGame = this.isGameAppearsInList();     
+            let currentGame = this.isGameAppearsInList();   
             if (currentGame){
+                console.log(currentGame)
                 this.setState({currentGame});
-                this.props.dispatch(setCurrentGameOption(currentGame._id,currentGame.name,currentGame.state));
+                this.props.dispatch(setCurrentGameOption(currentGame._id, currentGame.name, currentGame.state));
+                this.props.dispatch(setCurrentGameDetails(currentGame));
             }
             else{ 
                 this.props.history.push(`/${states.gameList}`);
             }
         }
-        //this.props.dispatch(setCurrentGameDetails(this.props.currentGame))
+        else{
+            this.props.dispatch(setCurrentGameDetails(this.state.currentGame));
+        }
+        
     }
     
     isGameAppearsInList(){
