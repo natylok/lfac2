@@ -20,6 +20,7 @@ export default function games(state = {
             case SET_GAME_DETAILS:
                 let gamesDetails = {};
                 gamesDetails[action.data.state] = action.data;
+                console.log(gamesDetails);
                 return Object.assign({}, state, { gamesDetails });
             default:
                 return state;

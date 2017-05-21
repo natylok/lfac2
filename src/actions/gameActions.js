@@ -1,6 +1,7 @@
 import HttpService from '../services/httpService';
 import { setLoader } from './loaderActions';
 import { apiList } from '../staticData/consts';
+import { setPlayerByGame } from './playerActions';
 import $ from 'jquery'
 export function getGames(){
     return (dispatch,getState) => {
@@ -35,11 +36,11 @@ function isGamesFetched(state){
 export function setCurrentGameDetails(currentGame,userId){
     return (dispatch, getState) => {
             dispatch(setLoader(true));
-            $.when(HttpService.sendRequest({}, 'GET', apiList.getGameDetails(currentGame.state)),
-                HttpService.sendRequest({}, 'GET', apiList.getPlayerByGame(userId, currentGame.state)))
+            HttpService.sendRequest({ gameId: currentGame._id}, 'POST', apiList.getPlayersAndClansForGame(currentGame.state))
                     .then((data) => {
-                        dispatch(setGameDetails(data[0]));
-                        dispatch(setPlayerForGame(currentGame,data[1])); 
+                        data.state = currentGame.state;
+                        dispatch(setGameDetails(data));
+                        dispatch(setPlayerByGame(currentGame,data)); 
                         dispatch(setLoader(false));
             },
                 err => {
