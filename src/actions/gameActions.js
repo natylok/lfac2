@@ -2,6 +2,7 @@ import HttpService from '../services/httpService';
 import { setLoader } from './loaderActions';
 import { apiList } from '../staticData/consts';
 import { setPlayerByGame } from './playerActions';
+import  UserService  from '../services/userService';
 import $ from 'jquery'
 export function getGames(){
     return (dispatch,getState) => {
@@ -19,7 +20,6 @@ export function getGames(){
 }
 export const SET_CURRENT_GAME = 'SET_CURRENT_GAME';
 export function setCurrentGameOption(id,name,state){
-    console.log("yes");
     return {type:SET_CURRENT_GAME , game:{id,name,state}}
 }
 export const SET_GAME_LIST = "SET_GAME_LIST";
@@ -38,9 +38,10 @@ export function setCurrentGameDetails(currentGame,userId){
             dispatch(setLoader(true));
             HttpService.sendRequest({ gameId: currentGame._id}, 'POST', apiList.getPlayersAndClansForGame(currentGame.state))
                     .then((data) => {
-                        data.state = currentGame.state;
+                        console.log("this is data" , data)
+                        let playerData = UserService.getPlayerDataInGame(currentGame.state, data.players,userId);
                         dispatch(setGameDetails(data));
-                        dispatch(setPlayerByGame(currentGame,data)); 
+                        dispatch(setPlayerByGame(playerData)); 
                         dispatch(setLoader(false));
             },
                 err => {

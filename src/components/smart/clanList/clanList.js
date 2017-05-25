@@ -8,8 +8,20 @@ export default class ClanList extends React.Component{
        
     }
     render(){
+        var currentList = [];
+        console.log(this.props);
+        if(this.props.clanList && Array.isArray(this.props.clanList)){
+            this.props.clanList.forEach((clan) => {
+                currentList.push(<li key={clan._id}>{clan.clanName}</li>);
+            });
+        }
         return (
-            <div>aaaa</div>
+            <div>
+                <div>{this.props.isPlayerFoundInCurrentGame}</div>    
+                <ul>
+                    {currentList}
+                </ul>
+            </div>
         )
     }
 }

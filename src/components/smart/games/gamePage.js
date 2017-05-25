@@ -19,7 +19,6 @@ class GamePage extends React.Component{
         if (!this.props.currentGame){  
             let currentGame = this.isGameAppearsInList();   
             if (currentGame){
-                console.log(currentGame)
                 this.setState({currentGame});
                 this.props.dispatch(setCurrentGameOption(currentGame._id, currentGame.name, currentGame.state));
                 this.props.dispatch(setCurrentGameDetails(currentGame));
@@ -45,10 +44,17 @@ class GamePage extends React.Component{
         this.setState({ currentActiveItem : item});
     }
     render(){
-        const props = {
+        console.log("game page props",this.props );
+        console.log("this is state"  ,this.state)
+        let propsForList = {};
+        if (this.props.gamesDetails && this.props.gamesDetails[this.state.currentGame.state] && Object.keys(this.props.gamesDetails[this.state.currentGame.state]).length > 0)
+        propsForList = {
             userId : this.props.userId,
             currentGame: this.props.currentGame,
-            currentGameDetails: this.props.gamesDetails[this.state.currentGame.state]
+            currentGameDetails: this.props.gamesDetails[this.state.currentGame.state],
+            clanList: this.props.gamesDetails[this.state.currentGame.state].clans,
+            playerList: this.props.gamesDetails[this.state.currentGame.state].players
+           // isPlayerFoundInCurrentGame: this.props.gamesDetails[this.state.currentGame.state].playerData.isPlayerFoundInGame
         }
         return(
             <div>
@@ -57,7 +63,8 @@ class GamePage extends React.Component{
                     <Menu.Item name='Clans' active={this.state.currentActiveItem == this.menuConsts.CLANS} onClick={() => { this.setActiveItem(this.menuConsts.CLANS)}} />
                     <Menu.Item name='Players' active={this.state.currentActiveItem == this.menuConsts.PLAYERS} onClick={() => { this.setActiveItem(this.menuConsts.PLAYERS) }} />       
                 </Menu>
-                {this.state.currentActiveItem === this.menuConsts.CLANS && <ClanList {...props}/>}
+                {this.state.currentActiveItem === this.menuConsts.CLANS && <ClanList {...propsForList}/>}
+                {this.state.currentActiveItem === this.menuConsts.PLAYERS && <PlayersList {...propsForList} />}
             </div>
         )
     }

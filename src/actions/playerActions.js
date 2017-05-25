@@ -3,9 +3,8 @@ import { setLoader } from './loaderActions'
 import { apiList } from '../staticData/consts'
 
 export const SET_PLAYER_DETAILS = "SET_PLAYER_DETAILS";
-function setPlayerByGame(currentGame,data){
-    data.currentGame = currentGame;
+export function setPlayerByGame(data){
+
     return {type:SET_PLAYER_DETAILS , data};
 }
-
 
