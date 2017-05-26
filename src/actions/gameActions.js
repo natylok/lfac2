@@ -38,10 +38,9 @@ export function setCurrentGameDetails(currentGame,userId){
             dispatch(setLoader(true));
             HttpService.sendRequest({ gameId: currentGame._id}, 'POST', apiList.getPlayersAndClansForGame(currentGame.state))
                     .then((data) => {
-                        console.log("this is data" , data)
                         let playerData = UserService.getPlayerDataInGame(currentGame.state, data.players,userId);
                         dispatch(setGameDetails(data));
-                        dispatch(setPlayerByGame(playerData)); 
+                        dispatch(setPlayerByGame(playerData,data.state)); 
                         dispatch(setLoader(false));
             },
                 err => {

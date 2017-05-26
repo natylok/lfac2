@@ -10,11 +10,10 @@ export default class UserService{
         return this.fullName;
     }
     static getPlayerDataInGame(currentGame,playersInGame,userId){
+        console.log("players in game" , playersInGame , userId);
         let player = _.find(playersInGame,(player) => {
             return player.userId === userId; 
         });
-        let tempObj = {};
-        tempObj[currentGame.state] = player ? player : { isFoundInGame: false }
-        return tempObj;
+        return player || {};
     }
 }

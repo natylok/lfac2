@@ -6,6 +6,7 @@ import { hashHistory } from 'react-router'
 import { states } from '../../../staticData/consts';
 import { Button, Divider, Segment, Grid, Header,Menu} from 'semantic-ui-react'
 import ClanList from '../clanList/clanList';
+import PlayersList from '../playerList/playerList';
 class GamePage extends React.Component{
     constructor(props){
         super(props);
@@ -21,14 +22,14 @@ class GamePage extends React.Component{
             if (currentGame){
                 this.setState({currentGame});
                 this.props.dispatch(setCurrentGameOption(currentGame._id, currentGame.name, currentGame.state));
-                this.props.dispatch(setCurrentGameDetails(currentGame));
+                this.props.dispatch(setCurrentGameDetails(currentGame,this.props.userId));
             }
             else{ 
                 this.props.history.push(`/${states.gameList}`);
             }
         }
         else{
-            this.props.dispatch(setCurrentGameDetails(this.state.currentGame));
+            this.props.dispatch(setCurrentGameDetails(this.state.currentGame, this.props.userId));
         }
         
     }
@@ -44,8 +45,7 @@ class GamePage extends React.Component{
         this.setState({ currentActiveItem : item});
     }
     render(){
-        console.log("game page props",this.props );
-        console.log("this is state"  ,this.state)
+        console.log(this.props.playerData);
         let propsForList = {};
         if (this.props.gamesDetails && this.props.gamesDetails[this.state.currentGame.state] && Object.keys(this.props.gamesDetails[this.state.currentGame.state]).length > 0)
         propsForList = {
@@ -53,8 +53,8 @@ class GamePage extends React.Component{
             currentGame: this.props.currentGame,
             currentGameDetails: this.props.gamesDetails[this.state.currentGame.state],
             clanList: this.props.gamesDetails[this.state.currentGame.state].clans,
-            playerList: this.props.gamesDetails[this.state.currentGame.state].players
-           // isPlayerFoundInCurrentGame: this.props.gamesDetails[this.state.currentGame.state].playerData.isPlayerFoundInGame
+            playerList: this.props.gamesDetails[this.state.currentGame.state].players,
+            playerData: this.props.playerData[this.state.currentGame.state]
         }
         return(
             <div>
@@ -76,7 +76,8 @@ function mapStateToProps(state){
         gameList: state.games.list,
         isUserLoggedIn : state.userReducer.isUserLoggedIn,
         gamesDetails : state.games.gamesDetails,
-        userId: state.userReducer.id
+        userId: state.userReducer.id,
+        playerData:state.player
     }
 }
 

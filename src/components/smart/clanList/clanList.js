@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react'
 
 export default class ClanList extends React.Component{
     constructor(props){
@@ -9,7 +10,6 @@ export default class ClanList extends React.Component{
     }
     render(){
         var currentList = [];
-        console.log(this.props);
         if(this.props.clanList && Array.isArray(this.props.clanList)){
             this.props.clanList.forEach((clan) => {
                 currentList.push(<li key={clan._id}>{clan.clanName}</li>);
@@ -17,7 +17,7 @@ export default class ClanList extends React.Component{
         }
         return (
             <div>
-                <div>{this.props.isPlayerFoundInCurrentGame}</div>    
+                {!this.props.userId && <Button color='purple'>Click here to connect and search for clan!</Button>}    
                 <ul>
                     {currentList}
                 </ul>
