@@ -9,3 +9,23 @@ export function setPlayerByGame(data,state){
     return { type: SET_PLAYER_DETAILS, playerData};
 }
 
+export const CREATE_PLAYER_PROFILE = "CREATE_PLAYER_PROFILE";
+export function createPlayerProfile(data, state) {
+    let playerData = {};
+    playerData[state] = data;
+    return { type: SET_PLAYER_DETAILS, playerData };
+}
+
+export function createNewProfile(data,currentGame,userId){
+    return (dispatch) => {
+        dispatch(setLoader(true));
+        HttpService.sendRequest({ data }, 'POST', apiList.createNewPlayerProfile(currentGame,userId))
+            .then((data) => {
+                dispatch(setPlayerByGame(data, currentGame));
+                dispatch(setLoader(false));
+            },
+            err => {
+                console.log(err);
+            });
+    }
+}

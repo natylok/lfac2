@@ -45,16 +45,16 @@ class GamePage extends React.Component{
         this.setState({ currentActiveItem : item});
     }
     render(){
-        console.log(this.props.playerData);
+
         let propsForList = {};
         if (this.props.gamesDetails && this.props.gamesDetails[this.state.currentGame.state] && Object.keys(this.props.gamesDetails[this.state.currentGame.state]).length > 0)
         propsForList = {
-            userId : this.props.userId,
+            userId: this.props.userId ,
             currentGame: this.props.currentGame,
             currentGameDetails: this.props.gamesDetails[this.state.currentGame.state],
             clanList: this.props.gamesDetails[this.state.currentGame.state].clans,
             playerList: this.props.gamesDetails[this.state.currentGame.state].players,
-            playerData: this.props.playerData[this.state.currentGame.state]
+            playerData: this.props.playerData[this.state.currentGame.state] 
         }
         return(
             <div>

@@ -1,12 +1,23 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { openModal } from '../../../actions/modalActions' 
+import { constants } from '../../../staticData/consts';
 
-export default class ClanList extends React.Component{
+class ClanList extends React.Component{
     constructor(props){
         super(props);
     }
     componentWillMount(){
        
+    }
+    handleCreateProfileClick(){
+        if(!this.props.userId){
+            this.props.dispatch(openModal(constants.LOGIN));
+        }
+        else{
+            this.props.dispatch(openModal(constants.CREATE_PROFILE));
+        }
     }
     render(){
         var currentList = [];
@@ -17,11 +28,10 @@ export default class ClanList extends React.Component{
         }
         return (
             <div>
-                {!this.props.userId && <Button color='purple'>Click here to connect and search for clan!</Button>}    
-                <ul>
-                    {currentList}
-                </ul>
+                {this.props.playerData && Object.keys(this.props.playerData).length === 0 && <Button onClick={() => { this.handleCreateProfileClick() }} color='purple'>Click here to create player profile</Button>}    
+                {this.props.userId && this.props.playerData && Object.keys(this.props.playerData).length > 0 && <ul>{currentList}</ul>}
             </div>
         )
     }
 }
+export default connect()(ClanList);

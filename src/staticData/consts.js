@@ -8,10 +8,11 @@ export const apiList = {
 };
 export const constants = {
     LOGIN:'login',
-    REGISTER:'register'
+    REGISTER:'register',
+    CREATE_PROFILE: 'createProfile'
 }
 export const states = {
     gameList : 'gameList',
     games: 'games',
-    listOfGames : ['wow','lol','runescape']
+    listOfGamesStates : ['wow','lol','runescape']
 };
