@@ -4,7 +4,8 @@ export const apiList = {
     register: `${baseUrl}/register`,
     getUserDetails: `${baseUrl}/1/user`,
     getGames: `${baseUrl}/games/list`,
-    getPlayersAndClansForGame: (gameState) => { return `${baseUrl}/games/gameDetails/${gameState}`}
+    getPlayersAndClansForGame: (gameState) => { return `${baseUrl}/games/gameDetails/${gameState}`},
+    createNewPlayerProfile: (gameState) => {return `${baseUrl}/1/players/${gameState}/createProfile`}
 };
 export const constants = {
     LOGIN:'login',

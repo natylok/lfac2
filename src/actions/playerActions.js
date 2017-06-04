@@ -4,24 +4,20 @@ import { apiList } from '../staticData/consts'
 
 export const SET_PLAYER_DETAILS = "SET_PLAYER_DETAILS";
 export function setPlayerByGame(data,state){
+    console.log("setplayeerby" ,data)
     let playerData = {};
     playerData[state] = data;
     return { type: SET_PLAYER_DETAILS, playerData};
 }
 
-export const CREATE_PLAYER_PROFILE = "CREATE_PLAYER_PROFILE";
-export function createPlayerProfile(data, state) {
-    let playerData = {};
-    playerData[state] = data;
-    return { type: SET_PLAYER_DETAILS, playerData };
-}
 
-export function createNewProfile(data,currentGame,userId){
+
+export function createNewProfile(data,gameState){
     return (dispatch) => {
         dispatch(setLoader(true));
-        HttpService.sendRequest({ data }, 'POST', apiList.createNewPlayerProfile(currentGame,userId))
+        HttpService.sendRequest({ data }, 'POST', apiList.createNewPlayerProfile(gameState))
             .then((data) => {
-                dispatch(setPlayerByGame(data, currentGame));
+                dispatch(setPlayerByGame(data, gameState));
                 dispatch(setLoader(false));
             },
             err => {

@@ -20,6 +20,7 @@ class ClanList extends React.Component{
         }
     }
     render(){
+        console.log("clanListProps" , this.props);
         var currentList = [];
         if(this.props.clanList && Array.isArray(this.props.clanList)){
             this.props.clanList.forEach((clan) => {

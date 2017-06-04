@@ -7,21 +7,24 @@ import { createGameProfile } from '../../../actions/playerActions';
 import {constants} from '../../../staticData/consts';
 import  GameProfileData  from '../../../staticData/gameProfileData';
 import DynamicGameProfileForm from '../../ui/form/dynamicGameProfileForm';
+import {createNewProfile} from '../../../actions/playerActions';
 class CreateProfileModal extends Component{
     constructor(props){
         super(props);
     }
-    handleProfileCreate(){
-        this.props.dispatch(createGameProfile({}));
+    handleProfileCreate(data){
+        data.userId = this.props.userId;
+        data.gameId = this.props.currentGame.id;
+        this.props.dispatch(createNewProfile(data, this.props.currentGame.state));
         this.props.dispatch(closeModal());
     }
     render(){
         if(this.props.currentGame){
             return(
-                <Modal onClose={() => { this.props.dispatch(closeModal()); }} open={this.props.modalOpen && this.props.modalType == constants.CREATE_PROFILE}>
-                    <Modal.Header><h4>Create new profile - {this.props.currentGame && this.props.currentGame.state}</h4></Modal.Header>
+                <Modal className="createProfileModal" onClose={() => { this.props.dispatch(closeModal()); }} open={this.props.modalOpen && this.props.modalType == constants.CREATE_PROFILE}>
+                    <Modal.Header><h3 className="headerGameProfile">Create new profile - {this.props.currentGame && this.props.currentGame.name}</h3></Modal.Header>
                         <Modal.Content>
-                        <DynamicGameProfileForm currentGame={this.props.currentGame.state} data={GameProfileData[this.props.currentGame.state]  } />
+                            <DynamicGameProfileForm currentGame={this.props.currentGame.state} gameData={GameProfileData[this.props.currentGame.state]} onClick={(data) => {this.handleProfileCreate(data)}}  />
                         </Modal.Content>
                     </Modal>
             );
