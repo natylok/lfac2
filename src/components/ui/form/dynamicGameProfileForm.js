@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form,Dropdown,Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { constants } from '../../../staticData/consts';
 import _ from 'lodash';
@@ -22,7 +22,15 @@ class DynamicGameProfileForm extends Component {
                         optionsFormArray.push(<Form.Input type={option.type} label={option.label} placeholder={option.placeholder} onChange={(event) => { this.handleInputChange(event.currentTarget.value, option.inputData) }} key={option.placeholder} />);
                         break;
                     case 'select':
-                        optionsFormArray.push(<Form.Select type={option.type} options={option.options} label={option.label} placeholder={option.placeholder} onChange={(event ,{value}) => { this.handleInputChange(value, option.inputData) }} key={option.placeholder}/>);
+                        if(option.hasImages){
+                            optionsFormArray.push(<Form.Dropdown type={option.type}  label={option.label} placeholder={option.placeholder} onChange={(event, { value }) => { this.handleInputChange(value, option.inputData) }} key={option.placeholder}>
+                                <Dropdown.Menu>{option.options.map((option) => {return <Dropdown.Item {...option}/> })}</Dropdown.Menu>
+                            </Form.Dropdown>);
+                        }
+                        else{
+                            optionsFormArray.push(<Form.Dropdown type={option.type} options={option.options} label={option.label} placeholder={option.placeholder} onChange={(event, { value }) => { this.handleInputChange(value, option.inputData) }} key={option.placeholder} />);
+                        }
+                        
                         break;
                     case 'submit':
                         optionsFormArray.push(<Form.Button onClick={() => { this.handleClick(); }} key={option.text}>{option.text}</Form.Button>);

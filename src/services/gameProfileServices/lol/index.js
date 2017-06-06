@@ -1,11 +1,11 @@
 let lolProfileService = {
     getLolRankOptions: function() {
         return [
-            { text: 'bronze', value: 'bronze', key: 'bronze' },
-            { text: 'silver', value: 'silver', key: 'silver' },
-            { text: 'gold', value: 'gold', key: 'gold' },
-            { text: 'platinum', value: 'platinum', key: 'platinum' },
-            { text: 'daimond', value: 'daimond', key: 'daimond' }
+            { text: 'bronze', value: 'bronze', key: 'bronze', image: { src:'/assets/games/lol/lol.png'} },
+            { text: 'silver', value: 'silver', key: 'silver', image: { src: '/assets/games/lol/lol.png' }},
+            { text: 'gold', value: 'gold', key: 'gold', image: { src: '/assets/games/lol/lol.png' }},
+            { text: 'platinum', value: 'platinum', key: 'platinum', image: { src: '/assets/games/lol/lol.png' }},
+            { text: 'daimond', value: 'daimond', key: 'daimond', image: { src: '/assets/games/lol/lol.png' } }
         ];
     },
     getLolRoles: function () {
