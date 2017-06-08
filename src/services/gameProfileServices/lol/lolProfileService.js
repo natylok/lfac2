@@ -10,11 +10,11 @@ let lolProfileService = {
     },
     getLolRoles: function () {
         return [
-            { text: 'ADC', value: 'ADC', key: 'ADC' },
-            { text: 'Mid', value: 'Mid', key: 'Mid' },
-            { text: 'Top', value: 'Top', key: 'Top' },
-            { text: 'Support', value: 'Support', key: 'Support' },
-            { text: 'Jungle', value: 'Jungle', key: 'Jungle' }
+            { text: 'ADC', value: 'ADC', key: 'ADC', image: { src: '/assets/games/lol/roles/adc.jpg' } },
+            { text: 'Mid', value: 'Mid', key: 'Mid', image: { src: '/assets/games/lol/roles/mid.jpg' }},
+            { text: 'Top', value: 'Top', key: 'Top', image: { src: '/assets/games/lol/roles/top.jpg' }},
+            { text: 'Support', value: 'Support', key: 'Support', image: { src: '/assets/games/lol/roles/support.jpg' } },
+            { text: 'Jungle', value: 'Jungle', key: 'Jungle', image: { src: '/assets/games/lol/roles/jungle.jpg' } }
         ];
     },
     getServerList: function() {

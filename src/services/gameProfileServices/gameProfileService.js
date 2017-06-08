@@ -1,4 +1,4 @@
-import lolProfileService from './lol/index';
+import lolProfileService from './lol/lolProfileService';
 
 console.log(lolProfileService);
 let gameProfileService = {}

@@ -1,4 +1,4 @@
-import lolProfileData from './lol/index';
+import lolProfileData from './lol/lolProfileData';
 
 let GameProfileData = {};
 GameProfileData.lol = lolProfileData;
