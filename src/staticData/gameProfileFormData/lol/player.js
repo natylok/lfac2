@@ -13,7 +13,7 @@ let playerProfileData = {
         { inputData: 'currentServer', type: 'select', options: gameProfileService.lol.getServerList(), label: 'Server:', placeholder: 'Select the server you are playing at' },
         { inputData: 'rank', type: 'select', hasImages:true, options: gameProfileService.lol.getLolRankOptions(), label: 'Rank:', placeholder: 'Select your player rank' },
         { inputData: 'mainRole', type: 'select', hasImages:true , options: gameProfileService.lol.getLolRoles(), label: 'Main Role:', placeholder: 'Select your main role' },
-        { inputData: 'lookingForClan', type: 'select', options: [{ text: 'yes', value: true, key: 'true' }, { text: 'No', value: false, key: 'false' }], label: 'Looking for clan?' },
+        { inputData: 'lookingForClan', type: 'select', options: [{ text: 'yes', value: 'true', key: 'true' }, { text: 'No', value: 'false', key: 'false' }], label: 'Looking for clan?' ,placeholder:"Looking for a clan" },
         { type: 'submit', text: 'Add new profile' },
     ]
 };

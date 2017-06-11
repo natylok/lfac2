@@ -21,6 +21,8 @@ export default function games(state = {
                 let gamesDetails = {};
                 gamesDetails[action.data.state] = action.data;
                 return Object.assign({}, state, { gamesDetails });
+            case ADD_PLAYER_TO_GAME:
+                gamesDetails[action.data.state].players.push(action.data.player);
             default:
                 return state;
         }
