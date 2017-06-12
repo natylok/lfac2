@@ -1,4 +1,5 @@
 import { SET_GAME_LIST, SET_CURRENT_GAME, SET_GAME_DETAILS} from '../actions/gameActions';
+import { ADD_PLAYER_TO_GAME } from '../actions/playerActions';
 function setGameList(state = [], action) {
     switch (action.type) {
         case SET_GAME_LIST:
@@ -22,8 +23,19 @@ export default function games(state = {
                 gamesDetails[action.data.state] = action.data;
                 return Object.assign({}, state, { gamesDetails });
             case ADD_PLAYER_TO_GAME:
-                gamesDetails[action.data.state].players.push(action.data.player);
+                let updatedGameDetails  = addToGameList(state,"players",action.data);
+                return Object.assign({}, state, updatedGameDetails);
             default:
                 return state;
         }
 }
+    function addToGameList(state,listType,actionData){
+        let gameState = actionData.state;
+        let copyGameDetails = Object.assign({},state);
+        delete actionData.state; 
+        if (copyGameDetails.gamesDetails[gameState]){
+        copyGameDetails.gamesDetails[gameState][listType].push(actionData);
+        copyGameDetails.gamesDetails[gameState][listType] = [].concat(copyGameDetails.gamesDetails[gameState][listType]);
+        }   
+        return copyGameDetails.gamesDetails;
+    }

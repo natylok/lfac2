@@ -45,7 +45,7 @@ class GamePage extends React.Component{
         this.setState({ currentActiveItem : item});
     }
     render(){
-        console.log("gamePageProps",this.props)
+        console.log("gamePage props", this.props);
         let propsForList = {};
         if (this.props.gamesDetails && this.props.gamesDetails[this.state.currentGame.state] && Object.keys(this.props.gamesDetails[this.state.currentGame.state]).length > 0)
         propsForList = {
