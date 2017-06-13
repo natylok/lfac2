@@ -28,8 +28,8 @@ class ClanList extends React.Component{
             });
         }
         return (
-            <div>
-                {this.props.playerData && Object.keys(this.props.playerData).length === 0 && <Button onClick={() => { this.handleCreateProfileClick() }} color='purple'>Click here to create player profile</Button>}    
+            <div className="clanList">
+                {this.props.playerData && Object.keys(this.props.playerData).length === 0 && <Button onClick={() => { this.handleCreateProfileClick() }} size="massive" color='blue' className="openProfileButton">Create player profile</Button>}    
                 {this.props.userId && this.props.playerData && Object.keys(this.props.playerData).length > 0 && <ul>{currentList}</ul>}
             </div>
         )

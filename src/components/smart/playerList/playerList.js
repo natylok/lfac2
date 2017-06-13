@@ -17,11 +17,9 @@ export default class PlayersList extends React.Component {
             });
         }
         return (
-            <div>
-                <div>{this.props.isPlayerFoundInCurrentGame}</div>
-                <ul>
-                    {currentList}
-                </ul>
+            <div className="playerList">
+                {this.props.clanData && Object.keys(this.props.clanData).length === 0 && <Button onClick={() => { this.handleCreateClanProfileClick() }} size="massive" color='blue' className="openProfileButton">Create clan profile</Button>}    
+                {this.props.userId && this.props.clanData && Object.keys(this.props.clanData).length > 0 && <ul>{currentList}</ul>}
             </div>
         )
     }

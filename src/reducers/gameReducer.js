@@ -34,8 +34,8 @@ export default function games(state = {
         let copyGameDetails = Object.assign({},state);
         delete actionData.state; 
         if (copyGameDetails.gamesDetails[gameState]){
-        copyGameDetails.gamesDetails[gameState][listType].push(actionData);
-        copyGameDetails.gamesDetails[gameState][listType] = [].concat(copyGameDetails.gamesDetails[gameState][listType]);
+            copyGameDetails.gamesDetails[gameState][listType].push(actionData);
+            copyGameDetails.gamesDetails[gameState][listType] = [].concat(copyGameDetails.gamesDetails[gameState][listType]);
         }   
         return copyGameDetails.gamesDetails;
     }
