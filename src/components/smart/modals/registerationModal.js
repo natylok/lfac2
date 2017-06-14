@@ -48,7 +48,7 @@ class RegisterModal extends Component {
 
 function mapStateToProps(state) {
     return {
-        modalType: state.modalReducer.modalState,
+        modalType: state.modalReducer.modalState.state,
         modalOpen: state.modalReducer.modalOpen
     };
 }

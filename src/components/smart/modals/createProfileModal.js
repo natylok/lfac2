@@ -15,6 +15,7 @@ class CreateProfileModal extends Component{
     handleProfileCreate(data){
         data.userId = this.props.userId;
         data.gameId = this.props.currentGame.id;
+        data.lookingForClan = data.lookingForClan && data.lookingForClan === "true" ? true : false;
         this.props.dispatch(createNewProfile(data, this.props.currentGame.state));
         this.props.dispatch(closeModal());
     }
@@ -24,7 +25,7 @@ class CreateProfileModal extends Component{
                 <Modal className="createProfileModal" onClose={() => { this.props.dispatch(closeModal()); }} open={this.props.modalOpen && this.props.modalType == constants.CREATE_PROFILE}>
                     <Modal.Header><h3 className="headerGameProfile">Create new profile - {this.props.currentGame && this.props.currentGame.name}</h3></Modal.Header>
                         <Modal.Content>
-                        <DynamicGameProfileForm currentGame={this.props.currentGame.state} gameData={GameProfileData[this.props.currentGame.state] && GameProfileData[this.props.currentGame.state].playerProfile} onClick={(data) => {this.handleProfileCreate(data)}}  />
+                        <DynamicGameProfileForm currentGame={this.props.currentGame.state} gameData={GameProfileData[this.props.currentGame.state] && GameProfileData[this.props.currentGame.state][this.props.modalProps.type]} onClick={(data) => {this.handleProfileCreate(data)}}  />
                         </Modal.Content>
                     </Modal>
             );
@@ -35,8 +36,9 @@ class CreateProfileModal extends Component{
 
 function mapStateToProps(state){
     return {
-        modalType: state.modalReducer.modalState,
+        modalType: state.modalReducer.modalState.state,
         modalOpen: state.modalReducer.modalOpen,
+        modalProps: state.modalReducer.modalState.props,
         currentGame: state.games.currentGame,
         userId: state.userReducer.id
     };

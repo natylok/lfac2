@@ -18,10 +18,10 @@ class Logo extends Component {
     }
     handleItemClick(item){
         if (item.state === constants.LOGIN){
-            this.props.dispatch(openModal(constants.LOGIN));
+            this.props.dispatch(openModal({state:constants.LOGIN}));
         }
         else if (item.state === constants.REGISTER){
-            this.props.dispatch(openModal(constants.REGISTER))
+            this.props.dispatch(openModal({state:constants.REGISTER}))
         }
         else{
             this.setState({ currentState: item.state });

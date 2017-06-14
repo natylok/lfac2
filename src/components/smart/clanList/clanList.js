@@ -13,10 +13,10 @@ class ClanList extends React.Component{
     }
     handleCreateProfileClick(){
         if(!this.props.userId){
-            this.props.dispatch(openModal(constants.LOGIN));
+            this.props.dispatch(openModal({state:constants.LOGIN}));
         }
         else{
-            this.props.dispatch(openModal(constants.CREATE_PROFILE));
+            this.props.dispatch(openModal({state:constants.CREATE_PROFILE,props:{type:"playerProfile"}}));
         }
     }
     render(){
